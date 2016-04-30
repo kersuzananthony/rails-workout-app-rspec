@@ -19,6 +19,9 @@
         <ul class="nav navbar-nav navbar-right">
           <% if user_signed_in? %>
               <li>
+                <%= link_to 'My Lounge', user_exercises_path(current_user) %>
+              </li>
+              <li>
                 <p class="navbar-text">
                   Signed in as <%= current_user.email %>
                 </p>
