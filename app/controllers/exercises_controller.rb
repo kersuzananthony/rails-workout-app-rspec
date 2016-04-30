@@ -4,7 +4,7 @@ class ExercisesController < ApplicationController
   before_action :set_exercise, except: [:index, :new, :create]
 
   def index
-
+    @exercises = Exercise.all
   end
 
   def show
