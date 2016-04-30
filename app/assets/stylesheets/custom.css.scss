@@ -4,3 +4,16 @@
 body {
   padding-top: 70px;
 }
+
+.btn-logout {
+  margin-top: 8px;
+  margin-right: 10px;
+  padding: 5px !important;
+  color: white !important;
+  transition: all 0.3s ease-in-out;
+
+  &:hover, &:focus {
+    color: #D9534F !important;
+    background: white;
+  }
+}
