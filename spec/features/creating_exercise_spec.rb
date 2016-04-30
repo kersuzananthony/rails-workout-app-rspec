@@ -1,4 +1,5 @@
 require 'rails_helper'
+require 'date'
 
 RSpec.feature 'Creating exercise' do
 
@@ -12,7 +13,7 @@ RSpec.feature 'Creating exercise' do
 
     fill_in 'Duration', with: 70
     fill_in 'Workout Details', with: 'Weight lifting'
-    fill_in 'Activity date', with: '2015-09-07'
+    fill_in 'Activity date', with: Date.today
     click_button 'Add Exercise'
 
     expect(page.status_code).to eq 200
