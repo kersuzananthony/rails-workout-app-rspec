@@ -8,12 +8,7 @@ RSpec.feature 'Creating exercise' do
   end
 
   scenario 'An signed in user can created an exercise' do
-    visit '/'
-
-    click_link 'My Lounge'
-    click_link 'New Workout'
-
-    expect(page).to have_link 'Back'
+    go_to_exercise_form
 
     fill_in 'Duration', with: 70
     fill_in 'Workout Details', with: 'Weight lifting'
@@ -25,6 +20,31 @@ RSpec.feature 'Creating exercise' do
 
     last_exercise = Exercise.last
     expect(page.current_path).to eq user_exercise_path(@user, last_exercise)
+  end
+
+  scenario 'An signed in user cannot create an exercise due to invalid inputs' do
+    go_to_exercise_form
+
+    fill_in 'Duration', with: nil
+    fill_in 'Workout Details', with: ''
+    fill_in 'Activity date', with: ''
+    click_button 'Add Exercise'
+
+    expect(page).to have_content 'Exercise has not been created.'
+    expect(page).to have_content 'Duration in min can\'t be blank'
+    expect(page).to have_content 'Duration in min is not a number'
+    expect(page).to have_content 'Workout can\'t be blank'
+    expect(page).to have_content 'Workout date can\'t be blank'
+  end
+
+  private
+  def go_to_exercise_form
+    visit '/'
+
+    click_link 'My Lounge'
+    click_link 'New Workout'
+
+    expect(page).to have_link 'Back'
   end
 
 end
