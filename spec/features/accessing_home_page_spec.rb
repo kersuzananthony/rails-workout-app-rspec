@@ -11,5 +11,4 @@ RSpec.feature 'Accessing Home Page' do
     expect(page.current_path).to eq root_path
     expect(page.status_code).to eq 200
   end
-
 end
