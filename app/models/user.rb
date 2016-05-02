@@ -17,6 +17,14 @@ class User < ActiveRecord::Base
     "#{first_name} #{last_name}"
   end
 
+  def follows_or_same?(new_friend)
+    friendships.map(&:friend).include?(new_friend) || self == new_friend
+  end
+
+  def current_friendship(friend)
+    friendships.where(friend: friend).first
+  end
+
   # Class method
   def self.search_by_name(name)
     names_away = name.to_s.split(' ')
@@ -29,9 +37,4 @@ class User < ActiveRecord::Base
           .order(:first_name)
     end
   end
-
-  def follows_or_same?(new_friend)
-    friendships.map(&:friend).include?(new_friend) || self == new_friend
-  end
-
 end
