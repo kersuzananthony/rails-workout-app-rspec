@@ -6,6 +6,8 @@ class User < ActiveRecord::Base
 
   # Association
   has_many :exercises, dependent: :destroy
+  has_many :friendships
+  has_many :friends, through: :friendships, class_name: 'User'
 
   # Validation
   validates :first_name, presence: true
@@ -27,4 +29,9 @@ class User < ActiveRecord::Base
           .order(:first_name)
     end
   end
+
+  def follows_or_same?(new_friend)
+    friendships.map(&:friend).include?(new_friend) || self == new_friend
+  end
+
 end
