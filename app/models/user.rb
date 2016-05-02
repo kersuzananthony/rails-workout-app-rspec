@@ -7,6 +7,10 @@ class User < ActiveRecord::Base
   # Association
   has_many :exercises, dependent: :destroy
 
+  # Validation
+  validates :first_name, presence: true
+  validates :last_name, presence: true
+
   def full_name
     "#{first_name} #{last_name}"
   end
