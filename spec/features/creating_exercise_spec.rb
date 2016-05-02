@@ -4,7 +4,7 @@ require 'date'
 RSpec.feature 'Creating exercise' do
 
   before do
-    @user = User.create!(email: 'jon.snow@example.com', password: 'password')
+    @user = User.create!(email: 'jon.snow@example.com', password: 'password', last_name: 'Snow', first_name: 'Jon')
     login_as @user
   end
 
