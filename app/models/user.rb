@@ -14,4 +14,17 @@ class User < ActiveRecord::Base
   def full_name
     "#{first_name} #{last_name}"
   end
+
+  # Class method
+  def self.search_by_name(name)
+    names_away = name.to_s.split(' ')
+    if names_away.size == 1
+      where('first_name LIKE ? or last_name LIKE ?', "%#{names_away[0]}%", "%#{names_away[0]}%")
+          .order(:first_name)
+    else
+      where('first_name LIKE ? or first_name LIKE ? or last_name LIKE ? or last_name LIKE ?',
+            "%#{names_away[0]}%", "%#{names_away[1]}%", "%#{names_away[0]}%", "%#{names_away[1]}%")
+          .order(:first_name)
+    end
+  end
 end
