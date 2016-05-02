@@ -29,6 +29,8 @@ gem 'sdoc', '~> 0.4.0', group: :doc
 # User authentication
 gem 'devise'
 
+gem 'will_paginate-bootstrap'
+
 gem 'jquery-ui-rails', '5.0.5'
 
 # Use ActiveModel has_secure_password
